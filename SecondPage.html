@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convert JSON Data to HTML Table</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
+    <style>
+        
+    </style>
+</head>
+<body onload="CreateTableFromJSON()">
+     
+     <div class="topnav">
+      <a class="active" href="#home">Vehicle Grid View</a>
+      <a  href="FirstPage.html" href="#news">Submission Form</a>
+    </div>
+     
+      <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search for vehicles..." title="Type in a name">
+    <table id="table"></table>
+    
+    <script>
+
+        function CreateTableFromJSON() {
+
+            var table = document.getElementById("table")
+            var vehicle = [
+
+                {
+                    "vehicleName": "vehicle",
+                    "vehicleType": "Car",
+                    "plateNumber": "SK-1234-AB",
+                    "model": "Audi"
+                },
+                {
+                    "vehicleName": "vehicle-2",
+                    "vehicleType": "Van",
+                    "plateNumber": "SK-5555-AB",
+                    "model": "Mercedes"
+                },
+                {
+                    "vehicleName": "vehicle-3",
+                    "vehicleType": "Truck",
+                    "plateNumber": "ST-9852-AB",
+                    "model": "BMW"
+                },
+                {
+                    "vehicleName": "vehicle-4",
+                    "vehicleType": "Trailer",
+                    "plateNumber": "PP-7412-AB",
+                    "model": "Citroen"
+                },
+                {
+                    "vehicleName": "vehicle-5",
+                    "vehicleType": "Container",
+                    "plateNumber": "SK-3654-AB",
+                    "model": "Opel"
+                }
+            ]
+            var col = [];
+            for (var i = 0; i < vehicle.length; i++) {
+                for (var key in vehicle[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
+                }
+            }
+
+            //var table = document.createElement("table");
+
+            var tr = table.insertRow(-1);
+
+            for (var i = 0; i < col.length; i++) {
+                var th = document.createElement("th");
+                th.innerHTML = col[i];
+                tr.appendChild(th);
+            }
+
+            for (var i = 0; i < vehicle.length; i++) {
+
+                tr = table.insertRow(-1);
+
+                for (var j = 0; j < col.length; j++) {
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = vehicle[i][col[j]];
+                }
+            }
+
+            var divContainer = document.getElementById("showData");
+            divContainer.innerHTML = "";
+            divContainer.appendChild(table);
+        }
+    </script>
+    <script>
+        function searchTable() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("table");            
+            tr = table.getElementsByTagName("tr");           
+
+            for (i = 1; i < tr.length; i++) {
+                // Hide the row initially.
+                tr[i].style.display = "none";
+
+                td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length; j++) {
+                    cell = tr[i].getElementsByTagName("td")[j];
+                    if (cell) {
+                        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        }
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

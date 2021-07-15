@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Viachle</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
+</head>
+
+<body>
+    <div class="topnav">
+      <a href="SecondPage.html" class="active" href="#home">Vehicle Grid View</a>
+      <a href="#news">Submission Form</a>
+    </div>
+   
+    <div id="container">
+
+        <h1>Submission form</h1>
+        <p>All fields marked with * are required</p>
+        <form id="submissionForm">
+            <div>
+                <label class="label-styles">Vehicle Name *</label>
+                <br>
+                <input class="field-style" type="text" name="Vehicle Name" id="vehicleName" maxlength="50" onblur="validateVehicleName()" required />
+                <br>
+                <label class="label-styles" id="lblErrorVehicleName" style="color:red"></label>
+            </div>
+            <br>
+            <div>
+                <label class="label-styles">Vehicle type *</label>
+                <br>
+                <select class="field-style" name="Vehicle Type" id="vehicleType" onblur="validateVehicleType()" required>
+                    <option style="display:none">
+                    <option value="Car">Car</option>
+                    <option value="Van">Van</option>
+                    <option value="Truck">Truck</option>
+                    <option value="Container">Container</option>
+                    <option value="Trailer">Trailer</option>
+                    <option value="Dumper">Dumper</option>
+                </select>
+                <br>
+                <label class="label-styles" id="lblErrorVehicleType" style="color:red"></label>
+            </div>
+            <br>
+            <div>
+                <label class="label-styles" for="model">Model</label> <br>
+                <input class="field-style" type="text" id="model" name="model" list="model-list" />
+                <datalist id="model-list">
+                    <option value="Audi">
+                    <option value="Bmw">
+                    <option value="Citroen">
+                    <option value="Hyndai">
+                    <option value="Mercedes">
+                    <option value="Nissan">
+                    <option value="Opel">
+                    <option value="Suzuki">
+                    <option value="Toyota">
+                    <option value="Volkswagen">
+                    <option value="Citroen">s
+                </datalist>
+            </div>
+            <br>
+            <div>
+                <label class="label-styles" for="License">License plate number *</label>
+                <br>
+                <input class="field-style" name="License" id="license" type="text" pattern="[A-Z]{2}-[0-9]{4}-[A-Z]{2}" placeholder="XX-NNNN-XX" onblur="validateLicense()" required size="10" />
+                <br>
+                <label id="lblErrorLicence" style="color:red"></label>
+            </div>
+            <br>
+            <div>
+                <label class="label-styles">Last registration date *</label> <br>
+                <input class="field-style" type="date" name="Last registration date *" id="lastDate" oninput="checkDate()" onblur="validateLastDate()" required>
+                <br>
+                <label id="lblErrorLastDate" style="color:red"></label>
+            </div>
+            <br>
+            <div>
+                <label class="label-styles">Date of registration submission *</label> <br>
+                <input class="field-style" type="date" name="Date of registration submission *" id="subDate" maxlength="10" onblur="validateSubDate()" onchange="TDate()" required>
+                <br>
+                <label id="lblErrorSubDate" style="color:red"></label>
+                <br>
+            </div>
+            <br>
+            <button type="submit" id="submit" disabled="disabled">Submit</button>
+        </form>
+    </div>
+
+    <script src="JavaScript.js"></script>
+</body>
+</html>
